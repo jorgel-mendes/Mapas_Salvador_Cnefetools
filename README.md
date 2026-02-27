@@ -7,6 +7,7 @@ Este repositório contém mapas interativos da cidade de Salvador (BA) com anál
 ### Renda e População
 - **População por Bairro**: Distribuição populacional em domicílios particulares
 - **Renda Média por Bairro**: Renda média do responsável por domicílio
+- **Renda em Alta Resolução (H3)**: Mapa detalhado usando grid hexagonal H3 com resolução 9 (~0.1 km² por hexágono)
 
 ### Faixa Etária
 - **População < 14 Anos**: Distribuição de jovens por bairro com breakdown detalhado
@@ -30,9 +31,11 @@ Acesse: `https://SEU_USUARIO.github.io/SEU_REPOSITORIO/`
 │   └── mapas/
 │       ├── mapa_populacao.html
 │       ├── mapa_renda.html
+│       ├── mapa_renda_alta_resolucao.html  # Grid H3 alta resolução
 │       ├── mapa_menores_14.html
 │       └── mapa_maiores_60.html
 ├── script_salvador_renda_populacao.R
+├── script_salvador_renda_h3.R              # Novo: Grid H3 alta resolução
 └── script_salvador_faixa_etaria.R
 ```
 
@@ -69,6 +72,15 @@ Acesse: `https://SEU_USUARIO.github.io/SEU_REPOSITORIO/`
 
 Os mapas utilizam **interpolação dasimétrica** através do pacote `cnefetools`, que distribui dados de setores censitários para bairros usando pontos de endereço do CNEFE (Cadastro Nacional de Endereços para Fins Estatísticos).
 
+### Grid Hexagonal H3
+
+O mapa de renda em alta resolução utiliza o **sistema H3** da Uber, que divide o mundo em hexágonos de tamanhos uniformes. Características:
+
+- **Resolução 9**: Cada hexágono cobre aproximadamente 0.1 km²
+- **1.940 hexágonos** em Salvador com dados válidos
+- **Granularidade**: Nível de quarteirão, permitindo identificar variações locais de renda
+- **Vantagens**: Hexágonos são melhores que quadrados para análise espacial pois têm distância uniforme entre centros e vizinhos
+
 ### Variáveis Disponíveis
 
 **Renda e População:**
@@ -85,6 +97,20 @@ Os mapas utilizam **interpolação dasimétrica** através do pacote `cnefetools
 - **Jovens (< 14 anos)**: 16,53% em média por bairro
 - **Idosos (> 60 anos)**: 17,19% em média por bairro
 
+### Distribuição de Renda (Grid H3 - Alta Resolução)
+- **Renda Média Geral**: R$ 3.523,46
+- **Renda Mínima**: R$ 844,08
+- **Renda Máxima**: R$ 58.598,44
+- **Total de hexágonos**: 1.940
+
+**Distribuição por Classe de Renda:**
+- Muito Baixa (< R$ 1.000): 2,37%
+- Baixa (R$ 1.000-2.000): 55,88%
+- Média-Baixa (R$ 2.000-3.000): 13,20%
+- Média (R$ 3.000-5.000): 8,92%
+- Média-Alta (R$ 5.000-10.000): 11,13%
+- Alta (> R$ 10.000): 8,51%
+
 ## 🎯 Recursos Interativos
 
 - **Hover**: Passa o mouse para ver nome do bairro
@@ -96,6 +122,7 @@ Os mapas utilizam **interpolação dasimétrica** através do pacote `cnefetools
 
 - **IBGE** - Censo Demográfico 2022
 - **CNEFE 2022** - Cadastro Nacional de Endereços para Fins Estatísticos
+- **H3** - Sistema de indexação geoespacial hexagonal da Uber (para mapa de alta resolução)
 
 ## 📄 Licença
 
@@ -110,5 +137,6 @@ Criado com ❤️ usando R e mapview
 **Nota**: Para regenerar os mapas, execute os scripts R na raiz do projeto:
 ```r
 source("script_salvador_renda_populacao.R")
+source("script_salvador_renda_h3.R")          # Mapa de alta resolução
 source("script_salvador_faixa_etaria.R")
 ```
