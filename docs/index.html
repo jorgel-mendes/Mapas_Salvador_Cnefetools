@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapas de Salvador - Análise Populacional</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #2d3748;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 1.2em;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            color: #2d3748;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .icon {
+            font-size: 1.8em;
+        }
+
+        footer {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        footer p {
+            color: #718096;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 1.8em;
+            margin: 30px 0 20px 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .subtitle {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Mapas Interativos de Salvador</h1>
+            <p class="subtitle">Análise Populacional por Bairro - 2022</p>
+        </header>
+
+        <h2 class="section-title">💰 Renda e População</h2>
+        <div class="grid">
+            <div class="card" onclick="window.location.href='mapas/mapa_populacao.html'">
+                <h2><span class="icon">👥</span> População por Bairro</h2>
+                <p>Visualize a distribuição populacional em domicílios particulares por bairro de Salvador. Veja qual percentual da cidade cada bairro representa.</p>
+                <a href="mapas/mapa_populacao.html" class="btn">Ver Mapa →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='mapas/mapa_renda.html'">
+                <h2><span class="icon">💵</span> Renda Média por Bairro</h2>
+                <p>Explore a distribuição de renda média dos responsáveis por domicílio em cada bairro de Salvador. Valores arredondados para facilitar a visualização.</p>
+                <a href="mapas/mapa_renda.html" class="btn">Ver Mapa →</a>
+            </div>
+        </div>
+
+        <h2 class="section-title">👶👴 Análise por Faixa Etária</h2>
+        <div class="grid">
+            <div class="card" onclick="window.location.href='mapas/mapa_menores_14.html'">
+                <h2><span class="icon">🧒</span> População Menor de 14 Anos</h2>
+                <p>Mapa da população jovem (0-14 anos) por bairro, com breakdown detalhado por faixa etária e percentual em relação à população do bairro.</p>
+                <a href="mapas/mapa_menores_14.html" class="btn">Ver Mapa →</a>
+            </div>
+
+            <div class="card" onclick="window.location.href='mapas/mapa_maiores_60.html'">
+                <h2><span class="icon">👴</span> População Maior de 60 Anos</h2>
+                <p>Visualize a distribuição da população idosa (60+ anos) por bairro, com detalhamento e percentual em relação à população total do bairro.</p>
+                <a href="mapas/mapa_maiores_60.html" class="btn">Ver Mapa →</a>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Fonte de dados:</strong> IBGE - Censo Demográfico 2022 | CNEFE 2022</p>
+            <p><strong>Metodologia:</strong> Interpolação dasimétrica usando o pacote cnefetools</p>
+            <p style="margin-top: 10px; color: #a0aec0; font-size: 0.9em;">
+                Mapas interativos criados com R + mapview • 2026
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

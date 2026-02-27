@@ -1,0 +1,30 @@
+# R
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Cache do CNEFE
+*.zip
+
+# Arquivos temporários
+*~
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Arquivos de output temporários
+*.png
+*.pdf
+!docs/**/*.png
+!docs/**/*.pdf
