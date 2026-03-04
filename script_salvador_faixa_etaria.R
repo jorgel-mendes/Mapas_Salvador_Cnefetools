@@ -83,21 +83,21 @@ criar_popup_idosos <- function(data) {
 popups_jovens <- sapply(1:nrow(salvador_bairros_faixa), function(i) criar_popup_jovens(salvador_bairros_faixa[i, ]))
 popups_idosos <- sapply(1:nrow(salvador_bairros_faixa), function(i) criar_popup_idosos(salvador_bairros_faixa[i, ]))
 
-# 8. Criar mapa interativo de População com Menos de 14 Anos
+# 8. Criar mapa interativo de Proporção de Menores de 14 Anos
 mapa_menor_14 <- mapview(
   salvador_bairros_faixa, 
-  zcol = 'pop_menor_14_arred', 
-  layer.name = "Pop. < 14 Anos",
+  zcol = 'perc_jovens', 
+  layer.name = "Proporção de Menores de 14 Anos (%)",
   alpha.regions = 0.7,
   popup = popups_jovens,
   label = salvador_bairros_faixa$name_neighborhood
 )
 
-# 9. Criar mapa interativo de População com Mais de 60 Anos
+# 9. Criar mapa interativo de Proporção de Idosos (População com Mais de 60 Anos)
 mapa_maior_60 <- mapview(
   salvador_bairros_faixa, 
-  zcol = 'pop_maior_60_arred', 
-  layer.name = "Pop. > 60 Anos",
+  zcol = 'perc_idosos', 
+  layer.name = "Proporção de Idosos (60+) %",
   alpha.regions = 0.7,
   popup = popups_idosos,
   label = salvador_bairros_faixa$name_neighborhood
